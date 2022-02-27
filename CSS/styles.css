@@ -1,0 +1,94 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-image: url(../IMG/galaxia.jpg);
+  background-position: center;
+  color: #ffffff;
+}
+
+input:not(input[type="submit"]) {
+  padding: 10px;
+  width: 380px;
+}
+
+input {
+  display: block;
+  height: 55px;
+  width: 400px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16pt;
+  background-color: rgba(255, 255, 255, 0.7);
+  outline: none;
+}
+
+div#container {
+  width: 420px;
+  margin: 130px auto 0px auto;
+}
+
+div#container-cad {
+  width: 420px;
+  margin: 80px auto 0px auto;
+}
+
+div#container h1,
+div#container-cad h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input[type="submit"] {
+  background-color: #4b0082;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+::webkit-input-placeholder {
+  color: #ccc;
+}
+
+:-moz-placeholder {
+  color: #ccc;
+}
+
+::-moz-placeholder {
+  color: #ccc;
+}
+
+:-ms-input-placeholder {
+  color: #ccc;
+}
+
+div.msg-successo {
+  width: 420px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgba(50, 205, 40, 0.3);
+  border: 1px solid rgb(34, 139, 34);
+}
+
+div.msg-erro {
+  width: 420px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: rgba(255, 128, 114, 0.3);
+  border: 1px solid rgb(165, 42, 42);
+}
