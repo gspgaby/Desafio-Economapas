@@ -13,10 +13,10 @@ Class Usuario{
       return false;
     }
     else{
-      $sql = $pdo->getPDO()->prepare("INSERT INTO usuarios (usuario, email, senha) VALUES (:u, :e, :s)");
+      $sql = $pdo->getPDO()->prepare("INSERT INTO usuarios(usuario, email, senha) VALUES (:u, :e, :s)");
       $sql->bindValue(':e',$email);
       $sql->bindValue(':u',$usuario);
-      $sql->bindValue(':s',md5($senha));
+      $sql->bindValue(':s',$senha);
       $sql->execute();
       return true;
     }
@@ -26,7 +26,7 @@ Class Usuario{
     $pdo = new Conexao();
     $sql = $pdo->getPDO()->prepare("SELECT id_usuario FROM usuarios WHERE usuario = :u AND senha = :s");
     $sql->bindValue(':u',$usuario);
-    $sql->bindValue(':s',md5($senha));
+    $sql->bindValue(':s',$senha);
     $sql->execute();
     if($sql->rowCount() > 0){
       $dado = $sql->fetch();
