@@ -11,7 +11,7 @@
 
  $Cidade = new Cidade();
 
- $Grupo = new Grupo();
+ $g = new Grupo();
  $id = isset($_GET["id"]) ? $_GET["id"] : null;
  $id = isset($_GET["ac"]) ? $_GET["ac"] : null;
 
@@ -37,14 +37,10 @@
  
 <body>
     <section id="esquerda">
-      <form method="post">
+      <form method="post" action="">
         <h2>CADASTRAR GRUPO</h2>
-        <label for="grupo_nome">Nome</label>
-        <input type="text" name="UF" id="UF">
-        <label for="cidade">Cidade</label>
-        <select name="id_cidade" id="id_cidade" >
-            <option value="">Escolha a cidade</option>
-        </select><br><br>
+        <label for="grupo">Nome</label>
+        <input type="text" name="grupo_nome" id="UF">        
         <input type="submit" value="Cadastrar">
       </form>
     </section>
@@ -73,24 +69,36 @@
          ?>
       </table>
     </section>
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js">
-
-    <script type="javascript">
-         $(".link-editar","#tb-cidades").on("click",function(){
-
-          
-            $.post("./editar.php", "id=" + $(this).sibling(".id-cidade").val(), function(resp){
-
-
-
-            } );
-         });
-
-    </script>
-</body>
+    <?php
+    if(isset($_POST['grupo_nome'])) {
+    $g = addslashes($_POST['grupo_nome']);
+    if(!empty($g)){  
+        if(!(new grupo())->buscarGrupoPeloNome($g)){
+            if($g->cadastrarGrupo($grupo_nome)){
+                ?>
+                <div class="msg-sucesso">
+                    Cadastrado com sucesso.
+                </div>
+                <?php
+            }
+            else{
+                ?>
+                    <div class="msg-erro">
+                        Grupo já está cadastrado. Verifique e tente novamente
+                </div>
+                <?php
+            }
+        }
+    }
+    else{
+        ?>
+            <div class="msg-erro">
+                Por favor preencha todos os campos!
+            </div>
+        <?php
+    }
+}
+?>
 
 
 

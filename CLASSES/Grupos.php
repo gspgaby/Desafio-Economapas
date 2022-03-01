@@ -2,55 +2,27 @@
 require_once "./CLASSES/conexao.php";
 
 Class Grupo{
-    public function cadastroGrupo($grupo, $id_usuario){
+    public function cadastrarGrupo($grupo_nome, $id_usuario){
         $pdo = new Conexao();
-        if(!$this->verificaNome($grupo, $id_usuario)){
-        $sql = $pdo->getPDO()->prepare("INSERT INTO grupos(grupo, id_usuario) VALUES ('$grupo', '$id_usuario')");
+        $sql = $pdo->getPDO()->prepare("INSERT INTO grupos(grupo_nome, id_usuario) VALUES (:g, :id_usuario)");
+        $sql->bindValue(':g',$grupo_nome);
+        $sql->bindValue(':id_usuario',$id_usuario);
         $sql->execute();
-        if($sql->rowCount() > 0){
-            $lastId = $pdo->lastInsertId();
-            return array(
-                'tipo' => 1,
-                'id_Grupo' => $lastId,
-                'mensagem2' => 'Grupo criado com sucesso.'
-            );
-        }else{
-            return array(
-                'tipo' => 0,
-                'mensagem' => 'Cadastro do grupo falhou.'
-            );
-        }
-        }else{
-            return array(
-                'tipo' => 0,
-                'mensagem' => 'Nome do grupo existente.'
-            );
-        }
-    } 
+    }
 
-    public function buscarGrupoPeloUsuario(){ 
+    public function buscarGrupoPeloNome($grupo_nome){ 
         $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("SELECT * FROM grupos WHERE id_usuario = '$id_usuario'");
+        $sql = $pdo->getPDO()->prepare("SELECT * FROM grupos WHERE grupo_nome = :g");
+        $sql->bindValue(':g',$grupo_nome);
         $sql->execute();
-        return $sql->fetchObj();
+        return $sql->fetch(PDO::FETCH_OBJ);
     }  
 
     public function excluiGrupo($id){
         $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("SELECT * FROM grupocidade WHERE id_grupo = '$id'");
+        $sql = $pdo->getPDO()->prepare("SELECT * FROM grupo_nome WHERE id_grupo = :id_usuario");
+        $sql->bindValue(':id_usuario',$id_usuario);
         $sql->execute();
-    }
-
-    private function verificaNome($grupo, $id_usuario){
-        $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("SELECT * FROM grupos WHERE grupo = '$grupo' AND id_usuario = '$id_usuario'");
-        $sql->execute();
-
-        if($sql->rowCount() > 0) {
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public function buscarGrupoID($id_grupo){
@@ -59,11 +31,9 @@ Class Grupo{
         if($sql->rowCount() > 0) {
             $result = $sql->fetch();
             $response['id_grupo'] = $result['id_grupo'];
-            $response['grupo'] = $result['grupo'];
+            $response['grupo_nome'] = $result['grupo_nome'];
             return $response;
         }
     }
 }
-
-header('Location: /areaPrivada.php');
 ?>
