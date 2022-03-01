@@ -24,14 +24,14 @@ Class Usuario{
 
   public function logar($usuario, $senha){
     $pdo = new Conexao();
-    $sql = $pdo->getPDO()->prepare("SELECT id_usuario FROM usuarios WHERE usuario = :u AND senha = :s");
+    $sql = $pdo->getPDO()->prepare("SELECT usuario FROM usuarios WHERE usuario = :u AND senha = :s");
     $sql->bindValue(':u',$usuario);
     $sql->bindValue(':s',$senha);
     $sql->execute();
     if($sql->rowCount() > 0){
       $dado = $sql->fetch();
       session_start();
-      $_SESSION['id_usuario'] = $dado['id_usuario'];
+      $_SESSION['usuario'] = $dado['usuario'];
       return true;
     }
     else{

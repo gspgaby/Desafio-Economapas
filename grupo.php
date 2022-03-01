@@ -1,29 +1,17 @@
 <?php
  session_start();
- require_once "./CLASSES/Cidades.php";
  require_once "./CLASSES/Grupos.php";
 
-
- if(!isset($_SESSION['id_usuario'])){
+ if(!isset($_SESSION['usuario'])){
    header('Location: index.php');
    exit;
  }
 
- $Cidade = new Cidade();
-
- $g = new Grupo();
- $id = isset($_GET["id"]) ? $_GET["id"] : null;
- $id = isset($_GET["ac"]) ? $_GET["ac"] : null;
-
- if(!empty($id)){
-  if($ac == 'excluir'){
-
-    $Grupo->excluirGrupo($id);
-  }
- }
-
+ $Grupo = new Grupo();
 ?>
 
+<?php ?>
+<a href="sair.php">Sair</a>
 <!DOCTYPE html>
 <html>
     
@@ -45,39 +33,35 @@
       </form>
     </section>
     <section id="direita">
-      <table id="tb-cidades">
+      <table id="tb-grupo">
         <tr id="titulo">
-          <td>NOME</td>
-          <td>CIDADE</td>
+          <td>GRUPOS</td>
           <td>AÇÕES</td>
         </tr>
          <?php 
-         foreach($Cidade->buscarCidades() as $cidade):
+         foreach($Grupo->buscarGrupos() as $grupo_nome):
          ?>
           <tr>
-            <td></td>
-            <td><?php echo $cidade->CAPITAL?></td>
+            <td><?php echo $grupo_nome->grupo_nome?></td>
             <td>
-              <input class="id-cidade" type="hidden" value="<?php echo $cidade->id_cidade ?>"/>
-
-              <a class="link-editar" href="?ac=editar&id=<?php echo $cidade->id_cidade?>">Editar</a>
-              <a class="link-excluir" href="?ac=excluir&id=<?php echo $cidade->id_cidade?>">Excluir</a>
+              <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->grupo_nome?>">Editar</a>
+              <a class="link-excluir" href="?ac=excluir&id=<?php echo $grupo_nome->grupo_nome?>">Excluir</a>
             </td>
           </tr>
          <?php
          endforeach;
          ?>
       </table>
-    </section>
+
     <?php
     if(isset($_POST['grupo_nome'])) {
     $g = addslashes($_POST['grupo_nome']);
     if(!empty($g)){  
-        if(!(new grupo())->buscarGrupoPeloNome($g)){
-            if($g->cadastrarGrupo($grupo_nome)){
+        if(!(new Grupo())->buscarGrupoPeloNome($g)){
+            if((new Grupo())->cadastrarGrupo($g)){
                 ?>
                 <div class="msg-sucesso">
-                    Cadastrado com sucesso.
+                    Grupo cadastrado com sucesso.
                 </div>
                 <?php
             }
@@ -98,9 +82,5 @@
         <?php
     }
 }
-?>
-
-
-
-
+?>  
 </html>

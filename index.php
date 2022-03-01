@@ -31,7 +31,7 @@ if(isset($_POST['usuario'])) {
     $senha = addslashes($_POST['senha']);
     if(!empty($usuario)  &&!empty($senha)){
         if($u->logar($usuario, $senha)){
-            header("Location: areaPrivada.php");
+            header("Location: grupo.php");
         }
         else{
             ?>
