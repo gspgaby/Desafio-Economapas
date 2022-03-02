@@ -12,18 +12,50 @@
   $dados_do_usuario = new Usuario();
   $Cidade = new Cidade();
   $Grupo = new Grupo();
-  $id_usuario = (isset($_SESSION['id_usuario'])) ? $_SESSION['id_usuario'] : null ;
-  $id_cidade = (isset($_POST['id_cidade'])) ? $_POST['id_cidade'] : null ;
-  $grupo_nome = (isset($_POST['grupo_nome'])) ? $_POST['grupo_nome'] : null ;
-  if(!empty($grupo_nome)){
-    $result = $Grupo->cadastrarGrupo($grupo_nome, $id_cidade, $id_usuario);
-    if($result['tipo']){
-        echo 'Cadastrado com sucesso';
-    }else{
-        echo 'Grupo já está cadastrado. Verifique e tente novamente';
+  $id_usuario = (isset($_SESSION['id_usuario'])) ? $_SESSION['id_usuario'] : "" ;
+  $id_cidade1 = (isset($_POST['id_cidade1'])) ? $_POST['id_cidade1'] : "";
+  $id_cidade2 = (isset($_POST['id_cidade2'])) ? $_POST['id_cidade2'] : "";
+  $id_cidade3 = (isset($_POST['id_cidade3'])) ? $_POST['id_cidade3'] : "" ;
+  $id_cidade4 = (isset($_POST['id_cidade4'])) ? $_POST['id_cidade4'] : "" ;
+  $id_cidade5 = (isset($_POST['id_cidade5'])) ? $_POST['id_cidade5'] : "" ;
+  $grupo_nome = (isset($_POST['grupo_nome'])) ? $_POST['grupo_nome'] : "" ;
+  $check_post_cidade = false;
+  $cidades = "";
+  if($id_cidade1 !== ""){
+    $check_post_cidade = true;
+    $cidades .= $id_cidade1 .",";
+  }
+  if($id_cidade2 !== ""){
+    $check_post_cidade = true;
+    $cidades .= $id_cidade2 .",";
+  }
+  if($id_cidade3 !== ""){
+    $check_post_cidade = true;
+    $cidades .= $id_cidade3 .",";
+  }
+  if($id_cidade4 !== ""){
+    $check_post_cidade = true;
+    $cidades .= $id_cidade4 .",";
+  }
+  if($id_cidade5 !== ""){
+    $check_post_cidade = true;
+    $cidades .= $id_cidade5 .",";
+  }
+  if(!$check_post_cidade){
+    echo "Preencha pelo menos 1 cidade";
+  }
+  else{
+    if(!empty($grupo_nome)){
+      $cidades = substr($cidades, 0, -1);
+      $result = $Grupo->cadastrarGrupo($grupo_nome, $cidades, $id_usuario);
+      if($result['tipo']){
+          echo 'Cadastrado com sucesso';
+      }else{
+          echo 'Grupo já está cadastrado. Verifique e tente novamente';
+      }
     }
   }
- 
+
  $id = isset($_GET["id"]) ? $_GET["id"] : null;
  $ac = isset($_GET["ac"]) ? $_GET["ac"] : null;
 
@@ -68,57 +100,57 @@
               <h2>CADASTRAR GRUPO</h2>
               <label for="grupo">Nome</label>
               <input type="text" name="grupo_nome" id="grupo">
-              <label for="id_cidade">CIDADE</label> 
-              <select name="id_cidade">
-                  <option>Selecione a Cidade</option>
-                  <?php 
-                    foreach($Cidade->buscarCidades() as $cidade):
-                  ?>
-                  <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
-                  <?php
-                    endforeach;
-                  ?>
-               </select>    
-               <select name="id_cidade">
-                  <option>Selecione a Cidade</option>
-                  <?php 
-                    foreach($Cidade->buscarCidades() as $cidade):
-                  ?>
-                  <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
-                  <?php
-                    endforeach;
-                  ?>
-               </select> 
-               <select name="id_cidade">
-                  <option>Selecione a Cidade</option>
-                  <?php 
-                    foreach($Cidade->buscarCidades() as $cidade):
-                  ?>
-                  <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
-                  <?php
-                    endforeach;
-                  ?>
-               </select> 
-               <select name="id_cidade">
-                  <option>Selecione a Cidade</option>
-                  <?php 
-                    foreach($Cidade->buscarCidades() as $cidade):
-                  ?>
-                  <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
-                  <?php
-                    endforeach;
-                  ?>
-               </select> 
-               <select name="id_cidade">
-                  <option>Selecione a Cidade</option>
-                  <?php 
-                    foreach($Cidade->buscarCidades() as $cidade):
-                  ?>
-                  <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
-                  <?php
-                    endforeach;
-                  ?>
-               </select>       
+              <label for="id_cidade">CIDADE</label>               
+                <select name="id_cidade1">
+                    <option value="">Selecione a Cidade</option>
+                    <?php 
+                      foreach($Cidade->buscarCidades() as $cidade):
+                    ?>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <?php
+                      endforeach;
+                    ?>
+                </select> 
+                <select name="id_cidade2">
+                    <option value="">Selecione a Cidade</option>
+                    <?php 
+                      foreach($Cidade->buscarCidades() as $cidade):
+                    ?>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <?php
+                      endforeach;
+                    ?>
+                </select> 
+                <select name="id_cidade3">
+                    <option value="">Selecione a Cidade</option>
+                    <?php 
+                      foreach($Cidade->buscarCidades() as $cidade):
+                    ?>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <?php
+                      endforeach;
+                    ?>
+                </select>
+                <select name="id_cidade4">
+                    <option value="">Selecione a Cidade</option>
+                    <?php 
+                      foreach($Cidade->buscarCidades() as $cidade):
+                    ?>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <?php
+                      endforeach;
+                    ?>
+                </select> 
+                <select name="id_cidade5">
+                    <option value="">Selecione a Cidade</option>
+                    <?php 
+                      foreach($Cidade->buscarCidades() as $cidade):
+                    ?>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <?php
+                      endforeach;
+                    ?>
+                </select>
               <button type="submit">Cadastrar</button>
             </form>
           </section>
@@ -127,14 +159,10 @@
               <tr id="titulo">
                 <td>GRUPOS</td>
                 <td>CIDADES</td>
-                <td>CIDADES</td>
-                <td>CIDADES</td>
-                <td>CIDADES</td>
-                <td>CIDADES</td>
                 <td>AÇÕES</td>
               </tr>
          <?php 
-         foreach($Grupo->buscarGrupos() as $grupo_nome):
+         foreach($Grupo->buscarGrupoPeloUsuario($id_usuario) as $grupo_nome):
           if($ac === 'editar' && $grupo_nome->id_grupo == $id){
             ?>
               <tr>
@@ -157,7 +185,14 @@
                   <?php echo $grupo_nome->grupo_nome?>
                 </td>
                 <td>
-                  <?php echo $grupo_nome->id_cidade?>
+                  <?php
+                  if($grupo_nome->id_cidade){
+                    $array_cidades = explode(',', $grupo_nome->id_cidade);
+                    foreach ($array_cidades as $id_cidade){
+                      echo $Cidade->buscarCidadesPorId($id_cidade)->cidade.',';
+                     }
+                  }
+                  ?>
                 </td>
                 <td>
                   <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->id_grupo?>">Editar</a>

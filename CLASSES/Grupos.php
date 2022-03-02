@@ -35,7 +35,8 @@ Class Grupo{
 
     public function buscarGrupos(){ 
         $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("SELECT G.*,C.cidade FROM grupos G left join cidades C on G.id_cidade = C.id_cidade");
+        // $sql = $pdo->getPDO()->prepare("SELECT G.*,C.cidade FROM grupos G left join cidades C on G.id_cidade = C.id_cidade");
+        $sql  = $pdo->getPDO()->prepare("SELECT * FROM grupos");
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
@@ -65,24 +66,7 @@ Class Grupo{
         $sql = $pdo->getPDO()->prepare("SELECT * FROM grupos WHERE id_usuario = :id_u");
         $sql->bindValue(':id_u',$id_usuario);
         $sql->execute();
-        if($sql->rowCount() > 0){
-            $result = $sql->fetchAll();
-            $response = [];
-            $count = 0;
-
-            foreach ($result as $res) {
-                $response[$count]['id_usuario'] = $res['id_grupo'];
-                $response[$count]['grupo_nome'] = $res['grupo_nome'];
-                $response[$count]['id_cidade'] = $res['id_cidade'];
-                $response[$count]['id_grupo'] = $res['id_grupo'];
-
-                $count++;
-            }
-
-            return $response;
-        }else{
-            return false;
-        }
+        return $sql->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function editarGrupo($id_grupo,$id_cidade,$grupo_nome){ 

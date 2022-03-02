@@ -15,5 +15,13 @@ Class Cidade{
     $sql->execute();
     return $sql->fetchAll(PDO::FETCH_OBJ);
   }
+
+  public function buscarCidadesPorId($id_cidade){
+    $pdo = new Conexao();
+    $sql = $pdo->getPDO()->prepare("SELECT * FROM cidades WHERE id_cidade = :id");
+    $sql->bindValue(':id', $id_cidade);
+    $sql->execute();
+    return $sql->fetch(PDO::FETCH_OBJ);
+  }
 };
 ?>
