@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Mar-2022 às 01:32
+-- Tempo de geração: 02-Mar-2022 às 05:26
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -69,24 +69,37 @@ INSERT INTO `cidades` (`id_cidade`, `CAPITAL`, `id_grupo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `grupocidade`
+--
+
+CREATE TABLE `grupocidade` (
+  `id_grupoCidade` int(11) NOT NULL,
+  `id_grupo` int(11) NOT NULL,
+  `id_cidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `grupos`
 --
 
 CREATE TABLE `grupos` (
   `id_grupo` int(11) NOT NULL,
-  `grupo_nome` varchar(100) NOT NULL
+  `grupo_nome` varchar(100) NOT NULL,
+  `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `grupos`
 --
 
-INSERT INTO `grupos` (`id_grupo`, `grupo_nome`) VALUES
-(1, 'NORTE'),
-(2, 'NORDESTE'),
-(3, 'SUL'),
-(4, 'SUDESTE'),
-(5, 'CENTRO OESTE');
+INSERT INTO `grupos` (`id_grupo`, `grupo_nome`, `id_usuario`) VALUES
+(1, 'NORTE', 1),
+(2, 'NORDESTE', 1),
+(3, 'SUL', 2),
+(4, 'SUDESTE', 2),
+(5, 'CENTRO OESTE', 2);
 
 -- --------------------------------------------------------
 
@@ -120,6 +133,12 @@ ALTER TABLE `cidades`
   ADD PRIMARY KEY (`id_cidade`);
 
 --
+-- Índices para tabela `grupocidade`
+--
+ALTER TABLE `grupocidade`
+  ADD PRIMARY KEY (`id_grupoCidade`);
+
+--
 -- Índices para tabela `grupos`
 --
 ALTER TABLE `grupos`
@@ -142,10 +161,16 @@ ALTER TABLE `cidades`
   MODIFY `id_cidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
+-- AUTO_INCREMENT de tabela `grupocidade`
+--
+ALTER TABLE `grupocidade`
+  MODIFY `id_grupoCidade` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `grupos`
 --
 ALTER TABLE `grupos`
-  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
