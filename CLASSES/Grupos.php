@@ -87,7 +87,7 @@ Class Grupo{
 
     public function editarGrupo($id_grupo,$id_cidade,$grupo_nome){ 
         $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("UPDATE grupos SET grupo_nome = :g, id_cidade = :WHERE id_grupo = :id");
+        $sql = $pdo->getPDO()->prepare("UPDATE grupos SET grupo_nome = :g, id_cidade = :id_c WHERE id_grupo = :id");
         $sql->bindValue(':id', $id_grupo);
         $sql->bindValue(':id_c',$id_cidade);
         $sql->bindValue(':g',$grupo_nome);

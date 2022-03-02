@@ -3,7 +3,7 @@
  require_once "./CLASSES/Cidades.php";
  require_once "./CLASSES/Grupos.php";
 
- if(!isset($_SESSION['id_usuario'])){
+ if(!isset($_SESSION['usuario'])){
    header('Location: index.php');
    exit;
  }
@@ -62,7 +62,7 @@
             <?php 
               foreach($Cidade->buscarCidades() as $cidade):
             ?>
-            <option><?php echo $cidade->CAPITAL?>"</option>
+            <option><?php echo $cidade->cidade?>"</option>
             <?php
               endforeach;
             ?>
