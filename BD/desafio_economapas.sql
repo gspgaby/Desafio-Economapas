@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Fev-2022 às 19:18
+-- Tempo de geração: 02-Mar-2022 às 01:32
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -29,41 +29,42 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cidades` (
   `id_cidade` int(11) NOT NULL,
-  `CAPITAL` varchar(100) NOT NULL
+  `CAPITAL` varchar(100) NOT NULL,
+  `id_grupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `cidades`
 --
 
-INSERT INTO `cidades` (`id_cidade`, `CAPITAL`) VALUES
-(1, 'AC - Rio Branco'),
-(2, 'AL - Maceió'),
-(3, 'AM - Manaus'),
-(4, 'AP - Macapá'),
-(5, 'BA - Salvador'),
-(6, 'CE - Fortaleza'),
-(7, 'DF - Brasília'),
-(8, 'ES - Vitória'),
-(9, 'GO - Goiânia'),
-(10, 'MA - São Luís'),
-(11, 'MG - Belo Horizonte'),
-(12, 'MS - Campo Grande'),
-(13, 'MT - Cuiabá'),
-(14, 'PA - Belém'),
-(15, 'PB - João Pessoa'),
-(16, 'PE - Recife'),
-(17, 'PI - Teresina'),
-(18, 'PR - Curitiba'),
-(19, 'RJ - Rio de Janeiro'),
-(20, 'RN - Natal'),
-(21, 'RO - Porto Velho'),
-(22, 'RR - Boa Vista'),
-(23, 'RS - Porto Alegre'),
-(24, 'SC - Florianópolis'),
-(25, 'SE - Aracaju'),
-(26, 'SP - São Paulo'),
-(27, 'TO - Palmas');
+INSERT INTO `cidades` (`id_cidade`, `CAPITAL`, `id_grupo`) VALUES
+(1, 'AC - Rio Branco', 1),
+(2, 'AL - Maceió', 2),
+(3, 'AM - Manaus', 1),
+(4, 'AP - Macapá', 1),
+(5, 'BA - Salvador', 2),
+(6, 'CE - Fortaleza', 2),
+(7, 'DF - Brasília', 5),
+(8, 'ES - Vitória', 4),
+(9, 'GO - Goiânia', 5),
+(10, 'MA - São Luís', 2),
+(11, 'MG - Belo Horizonte', 4),
+(12, 'MS - Campo Grande', 5),
+(13, 'MT - Cuiabá', 5),
+(14, 'PA - Belém', 1),
+(15, 'PB - João Pessoa', 2),
+(16, 'PE - Recife', 2),
+(17, 'PI - Teresina', 2),
+(18, 'PR - Curitiba', 3),
+(19, 'RJ - Rio de Janeiro', 4),
+(20, 'RN - Natal', 2),
+(21, 'RO - Porto Velho', 1),
+(22, 'RR - Boa Vista', 1),
+(23, 'RS - Porto Alegre', 3),
+(24, 'SC - Florianópolis', 3),
+(25, 'SE - Aracaju', 2),
+(26, 'SP - São Paulo', 4),
+(27, 'TO - Palmas', 1);
 
 -- --------------------------------------------------------
 
@@ -73,31 +74,19 @@ INSERT INTO `cidades` (`id_cidade`, `CAPITAL`) VALUES
 
 CREATE TABLE `grupos` (
   `id_grupo` int(11) NOT NULL,
-  `grupo_nome` varchar(100) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `grupo_nome` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `grupos`
 --
 
-INSERT INTO `grupos` (`id_grupo`, `grupo_nome`, `id_usuario`) VALUES
-(1, 'NORTE', 1),
-(2, 'NORDESTE', 2),
-(3, 'SUL', 1),
-(4, 'SUDESTE', 2);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `grupo_cidade`
---
-
-CREATE TABLE `grupo_cidade` (
-  `id_grupo_cidade` int(11) NOT NULL,
-  `id_grupo` int(11) NOT NULL,
-  `id_cidade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `grupos` (`id_grupo`, `grupo_nome`) VALUES
+(1, 'NORTE'),
+(2, 'NORDESTE'),
+(3, 'SUL'),
+(4, 'SUDESTE'),
+(5, 'CENTRO OESTE');
 
 -- --------------------------------------------------------
 
@@ -137,12 +126,6 @@ ALTER TABLE `grupos`
   ADD PRIMARY KEY (`id_grupo`);
 
 --
--- Índices para tabela `grupo_cidade`
---
-ALTER TABLE `grupo_cidade`
-  ADD PRIMARY KEY (`id_grupo_cidade`);
-
---
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -162,13 +145,7 @@ ALTER TABLE `cidades`
 -- AUTO_INCREMENT de tabela `grupos`
 --
 ALTER TABLE `grupos`
-  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `grupo_cidade`
---
-ALTER TABLE `grupo_cidade`
-  MODIFY `id_grupo_cidade` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_grupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

@@ -4,7 +4,7 @@ require_once "./CLASSES/conexao.php";
 Class Cidade{
   public function cadastrarCidade($CAPITAL){
     $pdo = new Conexao();
-    $sql = $pdo->getPDO()->prepare("INSERT INTO grupos(CAPITAL) VALUES (:c)");
+    $sql = $pdo->getPDO()->prepare("INSERT INTO cidades (CAPITAL) VALUES (:c)");
     $sql->bindValue(':c',$CAPITAL);
     return $sql->execute();  
 }
