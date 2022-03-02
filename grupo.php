@@ -1,17 +1,18 @@
 <?php
  session_start();
+ require_once "./CLASSES/Cidades.php";
  require_once "./CLASSES/Grupos.php";
 
  if(!isset($_SESSION['id_usuario'])){
    header('Location: index.php');
    exit;
  }
-
+  $Cidade = new Cidade();
   $Grupo = new Grupo();
   $id_usuario = (isset($_SESSION['id_usuario'])) ? $_SESSION['id_usuario'] : null ;
   $grupo_nome = (isset($_POST['grupo_nome'])) ? $_POST['grupo_nome'] : null ;
   if(!empty($grupo_nome)){
-    $result = $Grupo->cadastrarGrupo($grupo_nome, $id_usuario);
+    $result = $Grupo->cadastrarGrupo($grupo_nome, $id_cidade, $id_usuario);
     if($result['tipo']){
         echo 'Cadastrado com sucesso';
     }else{
@@ -54,7 +55,18 @@
       <form method="post" action="">
         <h2>CADASTRAR GRUPO</h2>
         <label for="grupo">Nome</label>
-        <input type="text" name="grupo_nome" id="UF">        
+        <input type="text" name="grupo_nome" id="grupo">
+        <label for="id_cidade">CIDADE</label> 
+        <select>
+            <option>Selecione a Cidade</option>
+            <?php 
+              foreach($Cidade->buscarCidades() as $cidade):
+            ?>
+            <option><?php echo $cidade->CAPITAL?>"</option>
+            <?php
+              endforeach;
+            ?>
+          </select>       
         <input type="submit" value="Cadastrar">
       </form>
     </section>
@@ -62,6 +74,7 @@
       <table id="tb-grupo">
         <tr id="titulo">
           <td>GRUPOS</td>
+          <td>CIDADES</td>
           <td>AÇÕES</td>
         </tr>
          <?php 
@@ -72,6 +85,8 @@
                 <form method="get" action="">
                   <td>
                     <input type="hidden" name="ac" value="salvar">
+                    <input type="hidden" name="id" value="<?php echo $grupo_nome->id_grupo?>">
+                    <input type="hidden" name="id" value="<?php echo $grupo_nome->id_grupo?>">
                     <input type="hidden" name="id" value="<?php echo $grupo_nome->id_grupo?>">
                     <input type="text" name="novo-grupo-nome" value="<?php echo $grupo_nome->grupo_nome?>">
                   </td>
@@ -86,6 +101,9 @@
               <tr>
                 <td>
                   <?php echo $grupo_nome->grupo_nome?>
+                </td>
+                <td>
+                  <?php echo $grupo_nome->id_cidade?>
                 </td>
                 <td>
                   <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->id_grupo?>">Editar</a>

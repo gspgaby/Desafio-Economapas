@@ -2,11 +2,12 @@
 require_once "./CLASSES/conexao.php";
 
 Class Grupo{
-    public function cadastrarGrupo($grupo_nome, $id_usuario){
+    public function cadastrarGrupo($grupo_nome, $id_cidade, $id_usuario){
         $pdo = new Conexao();
-        if(!$this->buscarGrupoPeloNome($grupo_nome, $id_usuario)){
-            $sql = $pdo->getPDO()->prepare("INSERT INTO grupos(grupo_nome, id_usuario) VALUES (:g, :id_u)");
+        if(!$this->buscarGrupoPeloNome($grupo_nome, $id_cidade, $id_usuario)){
+            $sql = $pdo->getPDO()->prepare("INSERT INTO grupos(grupo_nome, id_cidade, id_usuario) VALUES (:g, :id_c, :id_u)");
             $sql->bindValue(':g',$grupo_nome);
+            $sql->bindValue(':id_c',$id_cidade);
             $sql->bindValue(':id_u',$id_usuario);
             $sql->execute();                
             if($sql->rowCount() > 0){
@@ -16,13 +17,15 @@ Class Grupo{
                     'id_grupo' => $lastId,
                     'mensagem2' => 'Grupo criado com sucesso.'
                     );
-                }else{
+                }
+                else{
                     return array(
                         'tipo' => 0,
                         'mensagem' => 'Cadastro do grupo falhou.'
                     );
                 }
-            }else{
+            }
+            else{
                 return array(
                     'tipo' => 0,
                     'mensagem' => 'Nome do grupo existente.'
@@ -37,7 +40,7 @@ Class Grupo{
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
     
-    private function buscarGrupoPeloNome($grupo_nome, $id_usuario){ 
+    private function buscarGrupoPeloNome($grupo_nome, $id_cidade, $id_usuario){ 
         $pdo = new Conexao();
         $sql = $pdo->getPDO()->prepare("SELECT * FROM grupos WHERE grupo_nome = '$grupo_nome' AND id_usuario = '$id_usuario'");
         $sql->execute();
@@ -70,6 +73,7 @@ Class Grupo{
             foreach ($result as $res) {
                 $response[$count]['id_usuario'] = $res['id_grupo'];
                 $response[$count]['grupo_nome'] = $res['grupo_nome'];
+                $response[$count]['id_cidade'] = $res['id_cidade'];
                 $response[$count]['id_grupo'] = $res['id_grupo'];
 
                 $count++;
@@ -81,10 +85,11 @@ Class Grupo{
         }
     }
 
-    public function editarGrupo($id_grupo,$grupo_nome){ 
+    public function editarGrupo($id_grupo,$id_cidade,$grupo_nome){ 
         $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("UPDATE grupos SET grupo_nome = :g WHERE id_grupo = :id");
+        $sql = $pdo->getPDO()->prepare("UPDATE grupos SET grupo_nome = :g, id_cidade = :WHERE id_grupo = :id");
         $sql->bindValue(':id', $id_grupo);
+        $sql->bindValue(':id_c',$id_cidade);
         $sql->bindValue(':g',$grupo_nome);
         $sql->execute();
     }  
