@@ -2,12 +2,23 @@
  session_start();
  require_once "./CLASSES/Grupos.php";
 
- if(!isset($_SESSION['usuario'])){
+ if(!isset($_SESSION['id_usuario'])){
    header('Location: index.php');
    exit;
  }
 
- $Grupo = new Grupo();
+  $Grupo = new Grupo();
+  $id_usuario = (isset($_SESSION['id_usuario'])) ? $_SESSION['id_usuario'] : null ;
+  $grupo_nome = (isset($_POST['grupo_nome'])) ? $_POST['grupo_nome'] : null ;
+  if(!empty($grupo_nome)){
+    $result = $Grupo->cadastrarGrupo($grupo_nome, $id_usuario);
+    if($result['tipo']){
+        echo 'Cadastrado com sucesso';
+    }else{
+        echo 'Grupo já está cadastrado. Verifique e tente novamente';
+    }
+  }
+ 
  $id = isset($_GET["id"]) ? $_GET["id"] : null;
  $ac = isset($_GET["ac"]) ? $_GET["ac"] : null;
 
@@ -89,34 +100,4 @@
          ?>
       </table>
 
-    <?php
-    if(isset($_POST['grupo_nome'])) {
-    $g = addslashes($_POST['grupo_nome']);
-    if(!empty($g)){  
-        if(!(new Grupo())->buscarGrupoPeloNome($g)){
-            if((new Grupo())->cadastrarGrupo($g)){
-                ?>
-                <div class="msg-sucesso">
-                    Grupo cadastrado com sucesso.
-                </div>
-                <?php
-            }
-            else{
-                ?>
-                    <div class="msg-erro">
-                        Grupo já está cadastrado. Verifique e tente novamente
-                </div>
-                <?php
-            }
-        }
-    }
-    else{
-        ?>
-            <div class="msg-erro">
-                Por favor preencha todos os campos!
-            </div>
-        <?php
-    }
-}
-?>  
 </html>
