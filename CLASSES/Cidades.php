@@ -2,10 +2,10 @@
 require_once "./CLASSES/conexao.php";
 
 Class Cidade{
-  public function cadastrarCidade($CAPITAL){
+  public function cadastrarCidade($cidade){
     $pdo = new Conexao();
-    $sql = $pdo->getPDO()->prepare("INSERT INTO cidades (CAPITAL) VALUES (:c)");
-    $sql->bindValue(':c',$CAPITAL);
+    $sql = $pdo->getPDO()->prepare("INSERT INTO cidades (cidade) VALUES (:c)");
+    $sql->bindValue(':c',$cidade);
     return $sql->execute();  
 }
 

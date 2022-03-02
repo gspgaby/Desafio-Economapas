@@ -30,6 +30,26 @@ h2 {
   text-align: center;
 }
 
+#background {
+  background-color: #4b0082;
+  padding: 20px;
+  height: 25px;
+}
+
+#header-lado-esquerdo {
+  display: block;
+  color: #ffffff;
+  float: left;
+  width: 95%;
+}
+
+#header-lado-direito {
+  width: 5%;
+  height: 50px;
+  float: left;
+  align-items: center;
+}
+
 #esquerda {
   width: 35%;
   float: left;
@@ -68,6 +88,6 @@ a {
   background-color: #ffffff;
   color: #000000;
   padding: 5px;
-  margin: 0px 5px;
+  margin: 10px;
   text-decoration: none;
 }

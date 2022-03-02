@@ -35,7 +35,7 @@ Class Grupo{
 
     public function buscarGrupos(){ 
         $pdo = new Conexao();
-        $sql = $pdo->getPDO()->prepare("SELECT * FROM grupos");
+        $sql = $pdo->getPDO()->prepare("SELECT G.*,C.cidade FROM grupos G left join cidades C on G.id_cidade = C.id_cidade");
         $sql->execute();
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
