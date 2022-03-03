@@ -6,8 +6,8 @@
 
 O desafio foi proposto para um teste tecnico, foi solicitado uma tela de acesso com usuário e senha, a tela deve conter os usuário previamente solicitados:
 
-– Usuário1: joao e senha: 1234
-– Usuário2: maria e senha: 5678
+– Usuário1: joao e senha: 1234;
+– Usuário2: maria e senha: 5678;
 
 Ao entrar, o usuário vê a tela de criação/exbição de um grupo personalizado de cidades. Ele poderá:
 
