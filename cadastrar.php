@@ -37,16 +37,16 @@ if(isset($_POST['usuario'])) {
         if($senha == $confirmarSenha){
             if($u->cadastrar($usuario, $email, $senha)){
                 ?>
-                <div class="msg-sucesso">
-                    Cadastrado com sucesso. Acesse a página de login
-                </div>
+                    <div class="msg-sucesso">
+                        Cadastrado com sucesso. Acesse a página de login.
+                    </div>
                 <?php
             }
             else{
                 ?>
                     <div class="msg-erro">
-                        Email já está cadastrado. Verifique e tente novamente
-                </div>
+                        Email já está cadastrado. Verifique e tente novamente.
+                    </div>
                 <?php
             }
         }

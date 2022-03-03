@@ -106,9 +106,9 @@
       <body>
         <header class="cabecalho">
             <section id="esquerdo">
-              <h1>Economapas</h1>
+              <h1>ECONOMAPAS</h1>
             </section id="direito">
-              <a href="index.php?sair=true" class="header">Sair</a>
+              <a href="index.php?sair=true" class="header">SAIR</a>
             </section>
         </header>
         <section class="conteudo">
@@ -122,7 +122,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -132,7 +132,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -142,7 +142,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -152,7 +152,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -162,12 +162,12 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?>"</option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
                 </select>
-              <button type="submit">Cadastrar</button>
+              <button type="submit">CADASTRAR</button>
             </form>
             <table id="tb-grupo">
               <tr id="titulo">
@@ -187,7 +187,7 @@
                     <input type="text" name="novo-grupo-nome" value="<?php echo $grupo_nome->grupo_nome?>">
                   </td>
                   <td>
-                    <button type="submit" class="link-editar">Salvar</button>
+                    <button type="submit" class="link-editar">SALVAR</button>
                   </td>
                 </form>
               </tr>
@@ -209,8 +209,8 @@
                   ?>
                 </td>
                 <td>
-                  <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->id_grupo?>">Editar</a>
-                  <a class="link-excluir" href="?ac=excluir&id=<?php echo $grupo_nome->id_grupo?>">Excluir</a>
+                  <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->id_grupo?>">EDITAR</a>
+                  <a class="link-excluir" href="?ac=excluir&id=<?php echo $grupo_nome->id_grupo?>">EXCLUIR</a>
                 </td>
               </tr>
             <?php

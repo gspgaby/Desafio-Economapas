@@ -25,7 +25,7 @@ Ao entrar, o usuário vê a tela de criação/exbição de um grupo personalizad
 git clone https://github.com/gspgaby/Desafio-Economapas.git
 ```
 
-- Após entrar na pasta clonada, instale e tendo um servidor php e mysql ligados na sua maquina , utilise o comando:
+- Após entrar na pasta clonada, tendo um servidor php e mysql ligados na sua maquina , utilize o comando:
 
 ```sh
 php -S localhost:8080
