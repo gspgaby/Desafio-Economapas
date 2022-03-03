@@ -18,7 +18,7 @@ form {
   background-color: #4b0082;
   color: #ffffff;
   padding: 20px;
-  margin: 120px auto;
+  margin: 30px auto;
 }
 
 input[type="submit"] {
@@ -30,40 +30,28 @@ h2 {
   text-align: center;
 }
 
-#background {
-  background-color: #4b0082;
-  padding: 20px;
-  height: 25px;
-}
-
-#header-lado-esquerdo {
+#esquerdo {
   display: block;
   color: #ffffff;
   float: left;
   width: 95%;
 }
 
-#header-lado-direito {
+#direito {
   width: 5%;
   height: 50px;
   float: left;
   align-items: center;
 }
-
-#esquerda {
-  width: 35%;
-  float: left;
-}
-
-#direita {
-  width: 65%;
-  float: left;
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 table {
   background-color: #dcb7f7;
-  width: 90%;
-  margin: 120px auto;
+  margin: 50px auto;
 }
 
 tr {
@@ -90,4 +78,30 @@ a {
   padding: 5px;
   margin: 10px;
   text-decoration: none;
+  font-weight: bold;
+}
+
+.cabecalho {
+  background-color: #4b0082;
+  color: #ffffff;
+  padding: 30px;
+}
+
+.conteudo {
+  flex: 1 0 auto;
+}
+
+.rodape {
+  flex-shrink: 0;
+  padding: 30px;
+  background-color: #4b0082;
+  color: #ffffff;
+  text-align: center;
+}
+
+button {
+  background-color: #ffffff;
+  color: #4b0082;
+  font-weight: bold;
+  padding: 2px;
 }

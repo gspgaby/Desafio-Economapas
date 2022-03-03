@@ -23,5 +23,5 @@ Class Cidade{
     $sql->execute();
     return $sql->fetch(PDO::FETCH_OBJ);
   }
-};
+}
 ?>

@@ -31,7 +31,7 @@ git clone https://github.com/gspgaby/Desafio-Economapas.git
 php -S localhost:8080
 ```
 
-- Importe o aquivo da pasta BD para o seu aplicativo administrador de banco de dados mysql e agora é só logar com algum usuario cadastrado ou cadastrar um novo usuário. Se você escolher cadastrar um usuário a listagem de grupos será vazia, pois não existe nenhum grupo associado a ele, porem é so cadastrar um grupo novo do zero.
+- Crie um banco de dados de nome desafio_economapas e importe o aquivo da pasta BD para o seu aplicativo administrador de banco de dados mysql e agora é só logar com algum usuario cadastrado ou cadastrar um novo usuário. Se você escolher cadastrar um usuário a listagem de grupos será vazia, pois não existe nenhum grupo associado a ele, porem é so cadastrar um grupo novo do zero.
 
 - Acesse http://localhost:8080 no seu navagador
 

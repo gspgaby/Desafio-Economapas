@@ -42,19 +42,38 @@
     $cidades .= $id_cidade5 .",";
   }
   if(!$check_post_cidade){
-    echo "Preencha pelo menos 1 cidade";
+    ?>
+    <div class="msg-erro">
+      Preencha pelo menos 1 cidade
+    </div>
+    <?php
   }
   else{
     if(!empty($grupo_nome)){
       $cidades = substr($cidades, 0, -1);
       $result = $Grupo->cadastrarGrupo($grupo_nome, $cidades, $id_usuario);
       if($result['tipo']){
-          echo 'Cadastrado com sucesso';
+          ?>
+          <div class="msg-sucesso">
+              Grupo cadastrado com sucesso.
+          </div>
+          <?php
       }else{
-          echo 'Grupo já está cadastrado. Verifique e tente novamente';
+        ?>
+        <div class="msg-erro">
+            Grupo já está cadastrado. Verifique e tente novamente
+        </div>
+    <?php
       }
     }
+    else{
+      ?>
+          <div class="msg-erro">
+              Por favor preencha todos os campos!
+          </div>
+      <?php
   }
+}
 
  $id = isset($_GET["id"]) ? $_GET["id"] : null;
  $ac = isset($_GET["ac"]) ? $_GET["ac"] : null;
@@ -82,23 +101,20 @@
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>Economapas - Grupos</title>
-          <link rel="stylesheet" href="CSS/areaPrivada.css">
+          <link rel="stylesheet" href="CSS/grupo.css">
       </head>
-      
       <body>
-        <header>
-          <div id="background">
-            <section id="header-lado-esquerdo">
+        <header class="cabecalho">
+            <section id="esquerdo">
               <h1>Economapas</h1>
-            </section id="header-lado-direito">
+            </section id="direito">
               <a href="index.php?sair=true" class="header">Sair</a>
             </section>
-          <div>     
         </header>
-          <section id="esquerda">
+        <section class="conteudo">
             <form method="post" action="">
               <h2>CADASTRAR GRUPO</h2>
-              <label for="grupo">Nome</label>
+              <label for="grupo">NOME</label>
               <input type="text" name="grupo_nome" id="grupo">
               <label for="id_cidade">CIDADE</label>               
                 <select name="id_cidade1">
@@ -153,17 +169,15 @@
                 </select>
               <button type="submit">Cadastrar</button>
             </form>
-          </section>
-          <section id="direita">
             <table id="tb-grupo">
               <tr id="titulo">
                 <td>GRUPOS</td>
                 <td>CIDADES</td>
                 <td>AÇÕES</td>
               </tr>
-         <?php 
-         foreach($Grupo->buscarGrupoPeloUsuario($id_usuario) as $grupo_nome):
-          if($ac === 'editar' && $grupo_nome->id_grupo == $id){
+            <?php 
+              foreach($Grupo->buscarGrupoPeloUsuario($id_usuario) as $grupo_nome):
+              if($ac === 'editar' && $grupo_nome->id_grupo == $id){
             ?>
               <tr>
                 <form method="get" action="">
@@ -205,5 +219,12 @@
             <?php
               endforeach;
             ?>
-      </table>
+          </table>
+        </section>    
+        <footer class="rodape">
+          <p>
+            &copy; 2022 Economapas Sistemas e Tecnologia Ltda. Desafio Dev-FullStack. Todos os direitos reservados.
+          </p>
+        </footer>
+      </body>
     </html>
