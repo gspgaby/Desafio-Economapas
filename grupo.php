@@ -19,6 +19,7 @@
   $id_cidade4 = (isset($_POST['id_cidade4'])) ? $_POST['id_cidade4'] : "" ;
   $id_cidade5 = (isset($_POST['id_cidade5'])) ? $_POST['id_cidade5'] : "" ;
   $grupo_nome = (isset($_POST['grupo_nome'])) ? $_POST['grupo_nome'] : "" ;
+
   $check_post_cidade = false;
   $cidades = "";
   if($id_cidade1 !== ""){
@@ -64,6 +65,7 @@
             Grupo já está cadastrado. Verifique e tente novamente
         </div>
     <?php
+
       }
     }
     else{
@@ -85,9 +87,8 @@
     echo "Excluido com sucesso";
   }
   elseif ($ac == 'salvar'){ 
-      $Grupo->editarGrupo($id, $_GET["novo-grupo-nome"]);
-      echo "Editado com sucesso";
-  }
+    $Grupo->editarGrupo($id, $_GET["novo-grupo-nome"], $_GET["novo-id-cidade"]);
+}
  }
 
 ?>
@@ -122,7 +123,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->id_cidade?> - <?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -132,7 +133,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->id_cidade?> - <?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -142,7 +143,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->id_cidade?> - <?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -152,7 +153,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->id_cidade?> - <?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -162,7 +163,7 @@
                     <?php 
                       foreach($Cidade->buscarCidades() as $cidade):
                     ?>
-                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->cidade?></option>
+                    <option value="<?php echo $cidade->id_cidade; ?>"><?php echo $cidade->id_cidade?> - <?php echo $cidade->cidade?></option>
                     <?php
                       endforeach;
                     ?>
@@ -172,7 +173,7 @@
             <table id="tb-grupo">
               <tr id="titulo">
                 <td>GRUPOS</td>
-                <td>CIDADES</td>
+                <td>CIDADE</td>
                 <td>AÇÕES</td>
               </tr>
             <?php 
@@ -183,8 +184,13 @@
                 <form method="get" action="">
                   <td>
                     <input type="hidden" name="ac" value="salvar">
+
+                    <input type="hidden" name="id" value="<?php echo $grupo_nome->id_cidade?>">
+                    <input type="text" name="novo-id-cidade" value="<?php echo $grupo_nome->id_cidade?>">  
+                    
                     <input type="hidden" name="id" value="<?php echo $grupo_nome->id_grupo?>">
                     <input type="text" name="novo-grupo-nome" value="<?php echo $grupo_nome->grupo_nome?>">
+                   
                   </td>
                   <td>
                     <button type="submit" class="link-editar">SALVAR</button>
@@ -198,7 +204,7 @@
                 <td>
                   <?php echo $grupo_nome->grupo_nome?>
                 </td>
-                <td>
+                <td>  
                   <?php
                   if($grupo_nome->id_cidade){
                     $array_cidades = explode(',', $grupo_nome->id_cidade);
@@ -209,7 +215,7 @@
                   ?>
                 </td>
                 <td>
-                  <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->id_grupo?>">EDITAR</a>
+                <a class="link-editar" href="?ac=editar&id=<?php echo $grupo_nome->id_grupo?>">EDITAR</a>
                   <a class="link-excluir" href="?ac=excluir&id=<?php echo $grupo_nome->id_grupo?>">EXCLUIR</a>
                 </td>
               </tr>
