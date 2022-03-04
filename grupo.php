@@ -42,7 +42,7 @@
     $check_post_cidade = true;
     $cidades .= $id_cidade5 .",";
   }
-  if(!$check_post_cidade){
+  if(!$check_post_cidade && $grupo_nome){
     ?>
     <div class="msg-erro">
       Preencha pelo menos 1 cidade
@@ -67,13 +67,6 @@
     <?php
 
       }
-    }
-    else{
-      ?>
-          <div class="msg-erro">
-              Por favor preencha todos os campos!
-          </div>
-      <?php
   }
 }
 
@@ -84,12 +77,21 @@
   if($ac == 'excluir'){
 
     $Grupo->excluiGrupo($id);
-    echo "Excluido com sucesso";
+    ?>
+      <div class="msg-sucesso">
+        Excluido com sucesso
+      </div>
+    <?php
   }
   elseif ($ac == 'salvar'){ 
-    $Grupo->editarGrupo($id, $_GET["novo-grupo-nome"], $_GET["novo-id-cidade"]);
+    $Grupo->editarGrupo($id, $_GET["novo-id-cidade"], $_GET["novo-grupo-nome"]);
+    ?>
+      <div class="msg-sucesso">
+        Editado com sucesso
+      </div>
+    <?php
+  } 
 }
- }
 
 ?>
 
@@ -116,7 +118,7 @@
             <form method="post" action="">
               <h2>CADASTRAR GRUPO</h2>
               <label for="grupo">NOME</label>
-              <input type="text" name="grupo_nome" id="grupo">
+              <input type="text" name="grupo_nome" id="grupo" required="required">
               <label for="id_cidade">CIDADE</label>               
                 <select name="id_cidade1">
                     <option value="">Selecione a Cidade</option>
@@ -184,13 +186,11 @@
                 <form method="get" action="">
                   <td>
                     <input type="hidden" name="ac" value="salvar">
-
-                    <input type="hidden" name="id" value="<?php echo $grupo_nome->id_cidade?>">
-                    <input type="text" name="novo-id-cidade" value="<?php echo $grupo_nome->id_cidade?>">  
-                    
                     <input type="hidden" name="id" value="<?php echo $grupo_nome->id_grupo?>">
                     <input type="text" name="novo-grupo-nome" value="<?php echo $grupo_nome->grupo_nome?>">
-                   
+                  </td>  
+                  <td>  
+                    <input type="text" name="novo-id-cidade" value="<?php echo $grupo_nome->id_cidade?>">
                   </td>
                   <td>
                     <button type="submit" class="link-editar">SALVAR</button>
