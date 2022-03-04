@@ -33,7 +33,10 @@ php -S localhost:8080
 
 - Crie um banco de dados de nome desafio_economapas e importe o aquivo da pasta BD para o seu aplicativo administrador de banco de dados mysql e agora é só logar com algum usuario cadastrado ou cadastrar um novo usuário. Se você escolher cadastrar um usuário a listagem de grupos será vazia, pois não existe nenhum grupo associado a ele, porem é so cadastrar um grupo novo do zero.
 
-- Acesse http://localhost:8080 no seu navagador
+- Acesse http://localhost:8080 no seu navagador;
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/61751324/156818907-5ba3b3d5-919c-4261-adfb-87b2e6d327cb.gif)
+
 
 # Autora
 
